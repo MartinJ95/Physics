@@ -62,7 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\RigidBody.cs" />
+    <Compile Include="Assets\planeCollider.cs" />
+    <Compile Include="Assets\rigidBody.cs" />
     <Compile Include="Assets\sphereCollider.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/marti/Documents/GitHub/Physics/Physics_simulation/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

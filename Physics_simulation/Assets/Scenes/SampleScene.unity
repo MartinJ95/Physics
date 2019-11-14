@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 794350416}
   - component: {fileID: 794350415}
   - component: {fileID: 794350419}
+  - component: {fileID: 794350420}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -315,9 +316,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2692352f2d93d742a9b122ad247560d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 10, z: 0}
   mass: 1
   force: {x: 0, y: 0, z: 0}
+--- !u!114 &794350420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794350414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4e1a7ede5cbc942b3c3eded31819de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0.5
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +427,7 @@ GameObject:
   - component: {fileID: 1017436589}
   - component: {fileID: 1017436588}
   - component: {fileID: 1017436587}
+  - component: {fileID: 1017436591}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -493,3 +508,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1017436591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017436586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea7e199324b3d141ae3759290ae519f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

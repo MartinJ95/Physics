@@ -38,7 +38,9 @@ public class rigidBody : MonoBehaviour
 		{
 			if(o.GetComponent<sphereCollider>() != null)
 			{
-
+				sphereCollider col = o.GetComponent<sphereCollider>();
+				sphereCollider bounds = this.GetComponent<sphereCollider>();
+				col.sphereCollision(bounds, this.GetComponent<rigidBody>(), this.transform);
 			}
 			else if(o.GetComponent<planeCollider>() != null)
 			{

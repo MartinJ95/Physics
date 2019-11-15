@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class planeCollider : MonoBehaviour
 {
+	Vector3 normal;
+
+	Vector3 reflect(Vector3 velocity, Vector3 normal)
+	{
+		return 2 * (Vector3.Dot(normal, velocity)) * normal - velocity;
+	}
+
 	public void sphereCollision(sphereCollider sphere, rigidBody body, Transform transform)
 	{
-		float distance = Vector3.Dot((transform.position - this.transform.position), this.GetComponent<MeshFilter>().mesh.normals[0]);
+		normal = this.transform.TransformDirection(Vector3.up);
+		float distance = Vector3.Dot((transform.position - this.transform.position), normal);
 		if (distance < sphere.radius)
 		{
-			body.velocity = -body.velocity;
+			body.velocity = reflect(-body.velocity, normal);
+			transform.position += normal * (sphere.radius - Vector3.Dot((transform.position - this.transform.position), normal));
 		}
 	}
 

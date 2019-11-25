@@ -13,6 +13,8 @@ public class sphereCollider : MonoBehaviour
 		{
 			Vector3 normal = Vector3.Normalize(transform.position - this.transform.position);
 
+            //float restitution = this.GetComponent<material>().elasticity + body.GetComponentInParent<material>.elasticity
+
 			rigidBody b = this.GetComponent<rigidBody>();
 
 			float ai = Vector3.Dot(body.velocity, normal);

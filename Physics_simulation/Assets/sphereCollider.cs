@@ -20,7 +20,7 @@ public class sphereCollider : MonoBehaviour
 			float ai = Vector3.Dot(body.velocity, normal);
 			float a2 = Vector3.Dot(b.velocity, normal);
 
-			float p = (2 * (ai - a2) / (body.mass + b.mass));
+			float p = ((2 - (this.GetComponent<material>().elasticity + body.GetComponentInParent<material>().elasticity)) * (ai - a2) / (body.mass + b.mass));
 
 			Vector3 v1 = body.velocity - p * b.mass * normal;
 			Vector3 v2 = b.velocity + p * body.mass * normal;

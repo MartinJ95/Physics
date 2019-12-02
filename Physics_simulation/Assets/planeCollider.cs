@@ -17,6 +17,7 @@ public class planeCollider : MonoBehaviour
 		if (distance < sphere.radius)
 		{
 			body.velocity = reflect(-body.velocity, normal);
+            body.velocity = body.velocity * (1 - body.GetComponentInParent<material>().elasticity);
 			transform.position += normal * (sphere.radius - distance);
 		}
 	}

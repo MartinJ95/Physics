@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class rigidBody : MonoBehaviour
 {
-
+	public bool usesRotation = false;
+	float inertia;
+	Vector3 angularVelocity;
 	float gravity = -9.81f;
 	public Vector3 velocity = new Vector3(0, 0, 0);
 	public float mass;
@@ -14,6 +16,8 @@ public class rigidBody : MonoBehaviour
 		return new Vector3( 0, mass * gravity, 0) + force;
 	}
 
+
+
 	void addForce(Vector3 newForce)
 	{
 		force += newForce;
@@ -22,7 +26,11 @@ public class rigidBody : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		
+		if (GetComponent<AABB>())
+		{
+			AABB boundingBox = GetComponent<AABB>();
+			//inertia = 
+		}
     }
 
     // Update is called once per frame
@@ -33,20 +41,46 @@ public class rigidBody : MonoBehaviour
 		velocity += acceleration * Time.deltaTime;
 		transform.Translate(velocity * Time.deltaTime);
 
-		Object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
-		foreach (GameObject o in obj)
+		if (usesRotation)
 		{
-			if(o.GetComponent<sphereCollider>() != null)
+
+		}
+
+		Object[] obj = GameObject.FindObjectsOfType(typeof(GameObject));
+		if (this.GetComponent<sphereCollider>() != null)
+		{
+			foreach (GameObject o in obj)
 			{
-				sphereCollider col = o.GetComponent<sphereCollider>();
-				sphereCollider bounds = this.GetComponent<sphereCollider>();
-				col.sphereCollision(bounds, this.GetComponent<rigidBody>(), this.transform);
+				if (o.GetComponent<sphereCollider>() != null)
+				{
+					sphereCollider col = o.GetComponent<sphereCollider>();
+					sphereCollider bounds = this.GetComponent<sphereCollider>();
+					col.sphereCollision(bounds, this.GetComponent<rigidBody>(), this.transform);
+				}
+				else if (o.GetComponent<planeCollider>() != null)
+				{
+					planeCollider col = o.GetComponent<planeCollider>();
+					sphereCollider bounds = this.GetComponent<sphereCollider>();
+					col.sphereCollision(bounds, this.GetComponent<rigidBody>(), this.transform);
+				}
+				else if (o.GetComponent<AABB>() != null)
+				{
+					AABB col = o.GetComponent<AABB>();
+					sphereCollider bounds = this.GetComponent<sphereCollider>();
+					col.sphereCollision(bounds, this.GetComponent<rigidBody>(), this.transform);
+				}
 			}
-			else if(o.GetComponent<planeCollider>() != null)
+		}
+		else if(this.GetComponent<AABB>() != null)
+		{
+			foreach (GameObject o in obj)
 			{
-				planeCollider col = o.GetComponent<planeCollider>();
-				sphereCollider bounds = this.GetComponent<sphereCollider>();
-				col.sphereCollision(bounds, this.GetComponent<rigidBody>(), this.transform);
+				if (o.GetComponent<planeCollider>() != null)
+				{
+					planeCollider col = o.GetComponent<planeCollider>();
+					AABB bounds = this.GetComponent<AABB>();
+					col.AABBCollision(bounds, this.GetComponent<rigidBody>(), this.transform);
+				}
 			}
 		}
 	}

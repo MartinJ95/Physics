@@ -22,8 +22,29 @@ public class planeCollider : MonoBehaviour
 		}
 	}
 
-    // Start is called before the first frame update
-    void Start()
+	public void AABBCollision(AABB boundingBox, rigidBody body, Transform transform)
+	{
+		normal = this.transform.TransformDirection(Vector3.up);
+
+
+		Vector3 E = (new Vector3(boundingBox.transform.position.x + boundingBox.width / 2,
+			boundingBox.transform.position.y + boundingBox.height / 2,
+			boundingBox.transform.position.z + boundingBox.depth/2) - new Vector3(boundingBox.transform.position.x - boundingBox.width / 2,
+			boundingBox.transform.position.y - boundingBox.height / 2,
+			boundingBox.transform.position.z - boundingBox.depth / 2)) / 2;
+
+		float fradius = Mathf.Abs(normal.x * E.x) + Mathf.Abs(normal.y * E.y) + Mathf.Abs(normal.z * E.z);
+
+		sphereCollider newSphere = new sphereCollider
+		{
+			radius = fradius
+		};
+
+		sphereCollision(newSphere, body, transform);
+	}
+
+		// Start is called before the first frame update
+		void Start()
     {
 
     }
